@@ -188,7 +188,7 @@
 /* ---------------------- */
 /* Tech Graphic Element   */
 /* ---------------------- */
-.tech-graphic {
+.about-image .tech-graphic {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -197,7 +197,7 @@
   min-height: 350px;
 }
 
-.tech-circle {
+.about-image .tech-circle {
   position: relative;
   width: 200px;
   height: 200px;
@@ -208,9 +208,10 @@
   justify-content: center;
   align-items: center;
   animation: pulse 3s ease-in-out infinite;
+  overflow: visible !important;
 }
 
-.tech-circle::before {
+.about-image .tech-circle::before {
   content: "";
   position: absolute;
   width: 260px;
@@ -220,7 +221,7 @@
   animation: rotate-orbit 20s linear infinite;
 }
 
-.tech-circle::after {
+.about-image .tech-circle::after {
   content: "";
   position: absolute;
   width: 320px;
@@ -230,7 +231,7 @@
   animation: rotate-orbit 30s linear infinite reverse;
 }
 
-.tech-icon-main {
+.about-image .tech-icon-main {
   font-size: 4rem;
   background: linear-gradient(135deg, #9333ea, #3b82f6);
   -webkit-background-clip: text;
@@ -239,7 +240,7 @@
   animation: glow 2s ease-in-out infinite alternate;
 }
 
-.orbit-icon {
+.about-image .orbit-icon {
   position: absolute;
   width: 45px;
   height: 45px;
@@ -255,24 +256,24 @@
   transition: all 0.3s ease;
 }
 
-.orbit-icon:hover {
+.about-image .orbit-icon:hover {
   transform: scale(1.2);
   box-shadow: 0 6px 25px rgba(147, 51, 234, 0.5);
 }
 
-.orbit-1 { top: -20px; left: 50%; transform: translateX(-50%); animation: float-orbit 3s ease-in-out infinite; }
-.orbit-2 { right: -20px; top: 50%; transform: translateY(-50%); animation: float-orbit 3s ease-in-out infinite 0.5s; }
-.orbit-3 { bottom: -20px; left: 50%; transform: translateX(-50%); animation: float-orbit 3s ease-in-out infinite 1s; }
-.orbit-4 { left: -20px; top: 50%; transform: translateY(-50%); animation: float-orbit 3s ease-in-out infinite 1.5s; }
+.about-image .orbit-1 { top: -20px; left: 50%; transform: translateX(-50%); animation: float-orbit 3s ease-in-out infinite; }
+.about-image .orbit-2 { right: -20px; top: 50%; transform: translateY(-50%); animation: float-orbit 3s ease-in-out infinite 0.5s; }
+.about-image .orbit-3 { bottom: -20px; left: 50%; transform: translateX(-50%); animation: float-orbit 3s ease-in-out infinite 1s; }
+.about-image .orbit-4 { left: -20px; top: 50%; transform: translateY(-50%); animation: float-orbit 3s ease-in-out infinite 1.5s; }
 
-.tech-lines {
+.about-image .tech-lines {
   position: absolute;
   width: 100%;
   height: 100%;
   pointer-events: none;
 }
 
-.tech-lines span {
+.about-image .tech-lines span {
   position: absolute;
   width: 60px;
   height: 2px;
@@ -280,9 +281,9 @@
   animation: line-pulse 2s ease-in-out infinite;
 }
 
-.tech-lines span:nth-child(1) { top: 20%; left: -40px; transform: rotate(-30deg); animation-delay: 0s; }
-.tech-lines span:nth-child(2) { bottom: 30%; right: -40px; transform: rotate(30deg); animation-delay: 0.5s; }
-.tech-lines span:nth-child(3) { bottom: 10%; left: 10%; transform: rotate(-15deg); animation-delay: 1s; }
+.about-image .tech-lines span:nth-child(1) { top: 20%; left: -40px; transform: rotate(-30deg); animation-delay: 0s; }
+.about-image .tech-lines span:nth-child(2) { bottom: 30%; right: -40px; transform: rotate(30deg); animation-delay: 0.5s; }
+.about-image .tech-lines span:nth-child(3) { bottom: 10%; left: 10%; transform: rotate(-15deg); animation-delay: 1s; }
 
 @keyframes pulse {
   0%, 100% { box-shadow: 0 0 30px rgba(147, 51, 234, 0.3); }
