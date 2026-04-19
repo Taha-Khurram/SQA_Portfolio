@@ -63,6 +63,12 @@ def build_site():
     shutil.copytree(STATIC_DIR, static_dest)
     print(f"Copied static files to {static_dest}")
 
+    # Copy _redirects to root of dist if it exists
+    redirects_src = os.path.join(STATIC_DIR, "_redirects")
+    if os.path.exists(redirects_src):
+        shutil.copy(redirects_src, os.path.join(OUTPUT_DIR, "_redirects"))
+        print("Copied _redirects to dist root")
+
     # Set up Jinja2 environment
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
