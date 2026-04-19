@@ -21,6 +21,7 @@ PAGES = [
     ("portfolio.html", "portfolio/index.html", "portfolio"),
     ("seo_helper_master.html", "seo_helper_master/index.html", "project1"),
     ("time_center_ecommerce.html", "time_center/index.html", "project2"),
+    ("thank-you.html", "thank-you/index.html", "thankyou"),
 ]
 
 

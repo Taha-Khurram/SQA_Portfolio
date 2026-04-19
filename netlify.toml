@@ -33,6 +33,11 @@
   to = "/time_center/index.html"
   status = 200
 
+[[redirects]]
+  from = "/thank-you"
+  to = "/thank-you/index.html"
+  status = 200
+
 # Headers for caching and security
 [[headers]]
   for = "/static/*"
