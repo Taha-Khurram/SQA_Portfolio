@@ -26,13 +26,17 @@
   <meta property="twitter:description" content="Quality Assurance Engineer | Manual & Automation Testing">
   <meta property="twitter:image" content="https://mtahalabs.up.railway.app/static/images/preview.png"><!-- replace with your preview image -->
 
-  <!-- Google Font (Poppins) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Google Font (Poppins) — loaded once, site-wide -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Custom CSS -->
+  <!-- Design system: tokens + base must load before any page CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
 
   <!-- JSON-LD Schema for Google Rich Results -->

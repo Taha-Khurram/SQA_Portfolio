@@ -1,0 +1,84 @@
+/* ============================================================
+   Design Tokens — single source of truth for the whole site.
+   Change a value here and it propagates everywhere.
+   Theme: refined dark + purple/blue gradient identity.
+   ============================================================ */
+
+:root {
+  /* ---- Brand gradient (ONE canonical set) ---- */
+  --brand-1: #6a11cb;   /* violet  */
+  --brand-2: #2575fc;   /* blue    */
+  --brand-3: #a944ff;   /* magenta */
+  --accent:  #8b5cf6;   /* single solid accent for borders/icons */
+
+  --gradient-brand:  linear-gradient(135deg, var(--brand-1), var(--brand-2));
+  --gradient-vivid:  linear-gradient(90deg, var(--brand-1), var(--brand-2), var(--brand-3));
+
+  /* ---- Surfaces (unified dark base — navbar included) ---- */
+  --bg:           #0b0b12;   /* page base                */
+  --bg-elev:      #12121c;   /* raised sections          */
+  --surface:      rgba(255, 255, 255, 0.04);  /* glass card fill */
+  --surface-hover:rgba(255, 255, 255, 0.07);
+  --border:       rgba(255, 255, 255, 0.08);
+  --border-brand: rgba(139, 92, 246, 0.22);
+
+  /* ---- Text (contrast-checked on --bg) ---- */
+  --text:      #f4f4f9;   /* headings / high emphasis */
+  --text-body: #c4c4d2;   /* body copy  (~9:1)        */
+  --text-muted:#9a9aac;   /* secondary  (~5:1)        */
+
+  /* ---- Typography ---- */
+  --font-sans: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --fs-hero:   clamp(2rem, 5vw, 3.25rem);
+  --fs-h2:     clamp(1.6rem, 3.5vw, 2.4rem);
+  --fs-h3:     1.2rem;
+  --fs-body:   1rem;
+  --fs-sm:     0.9rem;
+  --lh-tight:  1.2;
+  --lh-body:   1.7;
+
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --section-y: clamp(3.5rem, 8vw, 6rem);
+  --hero-min: 100vh;   /* shared height for every home-page hero panel */
+
+  /* ---- Radius ---- */
+  --radius-sm: 12px;
+  --radius:    16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* ---- Shadow ---- */
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow:    0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-brand: 0 8px 24px rgba(106, 17, 203, 0.35);
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur:  0.3s;
+
+  /* ---- Layout ---- */
+  --container: 1200px;
+  --z-nav: 1000;
+  --z-loader: 9999;
+}
+
+/* Respect users who prefer less motion — kills every animation/transition. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,71 +1,69 @@
-/* Footer Container */
+/* ============================================================
+   Footer — token-driven. Button styling inherited from base.css.
+   ============================================================ */
 .site-footer {
-  background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
-  color: #fff;
-  padding: 70px 80px 40px;
-  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #000 0%, var(--bg) 100%);
+  color: var(--text);
+  padding: var(--space-24) clamp(1.5rem, 5vw, 5rem) var(--space-12);
+  font-family: var(--font-sans);
   position: relative;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid var(--border);
   overflow: hidden;
 }
 
-/* Subtle Overlay Effect */
+/* Subtle brand glow, top-left */
 .site-footer::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  inset: 0;
   background: radial-gradient(circle at top left, rgba(106, 17, 203, 0.12), transparent 70%);
   pointer-events: none;
 }
 
-/* Container Layout */
 .footer-container {
   display: flex;
   justify-content: space-between;
-  gap: 70px;
+  gap: var(--space-16);
   flex-wrap: wrap;
-  max-width: 1200px;
+  max-width: var(--container);
   margin: 0 auto;
   position: relative;
   z-index: 1;
 }
 
-/* Column Styling */
 .footer-col {
   flex: 1;
   min-width: 250px;
 }
 
-/* Brand Section */
 .footer-brand {
   font-size: 1.6rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   letter-spacing: 1px;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer-role {
-  margin: 8px 0 16px;
+  margin: var(--space-2) 0 var(--space-4);
   font-weight: 500;
-  font-size: 1rem;
-  color: #ccc;
+  color: var(--text-body);
 }
 
 .footer-desc {
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: #aaa;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  color: var(--text-muted);
 }
 
 /* Links */
 .footer-heading {
   font-size: 1.15rem;
   font-weight: 600;
-  margin-bottom: 18px;
-  color: #fff;
-  position: relative;
+  margin-bottom: var(--space-4);
+  color: var(--text);
 }
 
 .footer-links {
@@ -75,15 +73,14 @@
 }
 
 .footer-links li {
-  margin: 10px 0;
+  margin: var(--space-3) 0;
 }
 
 .footer-links a {
   position: relative;
-  text-decoration: none;
-  color: #bbb;
-  font-size: 0.96rem;
-  transition: color 0.3s ease;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  transition: color var(--dur) var(--ease);
 }
 
 .footer-links a::after {
@@ -93,36 +90,33 @@
   bottom: -4px;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  transition: width 0.3s ease;
+  background: var(--gradient-brand);
+  transition: width var(--dur) var(--ease);
 }
 
-.footer-links a:hover {
-  color: #fff;
+.footer-links a:hover,
+.footer-links a.active {
+  color: var(--text);
 }
 
-.footer-links a:hover::after {
+.footer-links a:hover::after,
+.footer-links a.active::after {
   width: 100%;
 }
 
-/* Contact Section */
-.footer-email {
-  margin-bottom: 16px;
-  color: #bbb;
-  font-size: 0.95rem;
-}
+/* Contact */
+.footer-email,
 .footer-phone {
-  margin-bottom: 16px;
-  color: #bbb;
-  font-size: 0.95rem;
+  margin-bottom: var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
 }
 
-
-/* Social Buttons */
+/* Social buttons */
 .footer-socials {
   display: flex;
-  gap: 14px;
-  margin-bottom: 18px;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
 .footer-socials a {
@@ -132,77 +126,29 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.05);
+  background: var(--surface);
+  border: 1px solid var(--border);
   font-size: 1.2rem;
-  color: #bbb;
-  transition: all 0.35s ease;
-  backdrop-filter: blur(6px);
+  color: var(--text-muted);
+  transition: color var(--dur) var(--ease),
+              background var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
 }
 
 .footer-socials a:hover {
   color: #fff;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  transform: translateY(-4px) scale(1.1);
-  box-shadow: 0 6px 16px rgba(106, 17, 203, 0.55);
+  background: var(--gradient-brand);
+  transform: translateY(-4px);
 }
 
-/* Gradient Button with Shimmer */
-.consult-btn {
-  background: linear-gradient(135deg, #6a11cb, #a944ff);
-  border: none;
-  padding: 12px 32px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 35px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(106, 17, 203, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.consult-btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, transparent 100%);
-  transform: skewX(-25deg);
-}
-
-.consult-btn:hover::after {
-  animation: shimmer 1.5s forwards;
-}
-
-@keyframes shimmer {
-  100% { left: 125%; }
-}
-
-.consult-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  background: linear-gradient(135deg, #2575fc, #6a11cb);
-  box-shadow: 0 8px 20px rgba(37, 117, 252, 0.45);
-}
-
-/* Footer Bottom */
+/* Footer bottom */
 .footer-bottom {
   text-align: center;
-  margin-top: 50px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 20px;
-  font-size: 0.88rem;
-  color: #777;
+  margin-top: var(--space-12);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-6);
+  font-size: 0.85rem;
+  color: var(--text-muted);
   position: relative;
   z-index: 1;
-}
-
-.footer-links a.active {
-  color: #40009a;
-}
-
-.footer-links a.active::after {
-  width: 100%;
 }

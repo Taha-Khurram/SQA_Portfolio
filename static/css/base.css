@@ -1,0 +1,171 @@
+/* ============================================================
+   Base — reset, global typography, shared components.
+   Loaded once, site-wide, right after tokens.css.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+  line-height: var(--lh-tight);
+  color: var(--text);
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- Layout helpers ---- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+/* ---- Gradient text (used by all headings/brand marks) ---- */
+.text-gradient {
+  background: var(--gradient-vivid);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ============================================================
+   Buttons — one definition, variants via modifier classes.
+   Replaces the 3 conflicting .consult-btn rules.
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.85rem 2rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              background var(--dur) var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Primary — solid gradient */
+.btn-primary {
+  background: var(--gradient-brand);
+  color: #fff;
+  box-shadow: var(--shadow-brand);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 12px 28px rgba(37, 117, 252, 0.45);
+}
+
+/* Secondary — outlined / ghost */
+.btn-ghost {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border-brand);
+}
+
+.btn-ghost:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+}
+
+/* Keep legacy .consult-btn / .cv-btn / .collab-btn / .about-btn
+   working by aliasing them to the primary button style. */
+.consult-btn,
+.cv-btn,
+.collab-btn,
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.85rem 2rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-brand);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: var(--fs-body);
+  cursor: pointer;
+  box-shadow: var(--shadow-brand);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.consult-btn:hover,
+.cv-btn:hover,
+.collab-btn:hover,
+.about-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(37, 117, 252, 0.45);
+}
+
+/* ============================================================
+   Card — reusable glass surface. One hover behaviour.
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-brand);
+  box-shadow: var(--shadow);
+}

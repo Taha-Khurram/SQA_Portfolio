@@ -1,47 +1,47 @@
-/* General Navbar Styling */
+/* ============================================================
+   Navbar — unified dark glass bar (matches the rest of the site).
+   ============================================================ */
 .navbar {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-sans);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 14px 60px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  justify-content: space-between;
+  padding: 0.9rem clamp(1.25rem, 4vw, 3.75rem);
   position: sticky;
   top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
+  z-index: var(--z-nav);
+  background: rgba(11, 11, 18, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
 }
 
-/* Left Column - Gradient Text */
+/* Left — brand mark */
 .brand-gradient {
   font-size: 1.4rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   letter-spacing: 0.5px;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Center Column - Links */
+/* Center — links */
 .nav-center {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 32px;
+  gap: var(--space-8);
 }
 
 .nav-center a {
   position: relative;
-  text-decoration: none;
-  color: #333;
+  color: var(--text-body);
   font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.3s ease;
+  font-size: var(--fs-body);
+  transition: color var(--dur) var(--ease);
 }
 
 .nav-center a::after {
@@ -49,44 +49,31 @@
   position: absolute;
   left: 0;
   bottom: -6px;
-  width: 0%;
+  width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  transition: width 0.3s ease;
+  background: var(--gradient-brand);
+  transition: width var(--dur) var(--ease);
 }
 
-.nav-center a:hover {
-  color: #6a11cb;
-}
-
-.nav-center a:hover::after {
-  width: 100%;
-}
-
-/* Right Column - Gradient Button */
-.consult-btn {
-  display: inline-block;
-  padding: 14px 34px;
-  border-radius: 40px;
-  background: linear-gradient(135deg, #2575fc, #6a11cb);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 18px rgba(37, 117, 252, 0.5);
-  text-decoration: none; /* <-- underline remove */
-}
-.consult-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  background: linear-gradient(135deg, #6a11cb, #a944ff);
-  box-shadow: 0 10px 24px rgba(106, 17, 203, 0.6);
-}
-/* Active link style */
+.nav-center a:hover,
 .nav-center a.active {
-  color: #6a11cb;
+  color: var(--text);
 }
 
+.nav-center a:hover::after,
 .nav-center a.active::after {
   width: 100%;
+}
+
+/* Right — CTA uses the shared .consult-btn from base.css.
+   Slightly tighter padding for the nav context only. */
+.navbar .consult-btn {
+  padding: 0.6rem 1.5rem;
+}
+
+/* Mobile: hide center links (kept minimal for the foundation pass) */
+@media (max-width: 820px) {
+  .nav-center {
+    display: none;
+  }
 }
