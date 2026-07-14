@@ -1,0 +1,58 @@
+{% extends "admin/base.html" %}
+{% block title %}{% if action == 'edit' %}Edit Project{% else %}New Project{% endif %}{% endblock %}
+
+{% block content %}
+<div class="admin-header-row">
+  <h1>{% if action == 'edit' %}Edit Project{% else %}New Project{% endif %}</h1>
+  <a href="{{ url_for('admin_projects') }}" class="btn btn-ghost"><i class="fas fa-arrow-left"></i> Back</a>
+</div>
+
+<form method="POST" class="admin-form admin-panel" enctype="multipart/form-data">
+  <div class="admin-field">
+    <label for="title">Title <span class="req">*</span></label>
+    <input type="text" id="title" name="title" value="{{ project.title if project else '' }}" required>
+  </div>
+
+  <div class="admin-field">
+    <label for="short_description">Short Description <span class="admin-hint-inline">(shown on the portfolio card)</span></label>
+    <textarea id="short_description" name="short_description" rows="2">{{ project.short_description if project else '' }}</textarea>
+  </div>
+
+  <div class="admin-field">
+    <label for="overview">Overview <span class="admin-hint-inline">(long text on the detail page)</span></label>
+    <textarea id="overview" name="overview" rows="6">{{ project.overview if project else '' }}</textarea>
+  </div>
+
+  <div class="admin-field">
+    <label for="tags">Tags <span class="admin-hint-inline">(comma separated, e.g. Selenium, Postman, JMeter)</span></label>
+    <input type="text" id="tags" name="tags" value="{{ project.tags|join(', ') if project and project.tags else '' }}">
+  </div>
+
+  <div class="admin-field-row">
+    <div class="admin-field">
+      <label for="card_image">Card Image <span class="admin-hint-inline">(portfolio thumbnail)</span></label>
+      {% if project and project.card_image_url %}
+      <img src="{{ project.card_image_url }}" alt="" class="admin-preview-img">
+      {% endif %}
+      <input type="file" id="card_image" name="card_image" accept="image/*">
+      {% if project and project.card_image_url %}<small class="admin-hint">Leave empty to keep the current image.</small>{% endif %}
+    </div>
+
+    <div class="admin-field">
+      <label for="preview_image">Preview Image <span class="admin-hint-inline">(large image on detail page)</span></label>
+      {% if project and project.preview_image_url %}
+      <img src="{{ project.preview_image_url }}" alt="" class="admin-preview-img">
+      {% endif %}
+      <input type="file" id="preview_image" name="preview_image" accept="image/*">
+      {% if project and project.preview_image_url %}<small class="admin-hint">Leave empty to keep the current image.</small>{% endif %}
+    </div>
+  </div>
+
+  <div class="admin-field admin-field-narrow">
+    <label for="order">Display Order <span class="admin-hint-inline">(lower shows first)</span></label>
+    <input type="number" id="order" name="order" value="{{ project.order if project and project.order is defined else 0 }}">
+  </div>
+
+  <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> {% if action == 'edit' %}Update{% else %}Create{% endif %} Project</button>
+</form>
+{% endblock %}

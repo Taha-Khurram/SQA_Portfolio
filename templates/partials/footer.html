@@ -25,23 +25,27 @@
     <!-- Right Column -->
     <div class="footer-col">
       <h3 class="footer-heading">Get in Touch</h3>
-      <p class="footer-email">m.tahaofficial007@gmail.com</p>
-      <p class="footer-phone">+92 331 5604180</p>
+      <p class="footer-email">{{ settings.email }}</p>
+      <p class="footer-phone">{{ settings.phone }}</p>
       <div class="footer-socials">
-        <a href="https://www.linkedin.com/in/muhammad-taha-khurram-2b77ba366/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/mtahaofficial007-collab" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="{{ settings.linkedin_url }}" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="{{ settings.github_url }}" aria-label="GitHub"><i class="fab fa-github"></i></a>
       </div>
       <a href="{{ url_for('contact') }}" class="consult-btn">Book Consultation</a>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <p>© 2025 Muhammad Taha Khurram. All Rights Reserved.</p>
+    <p>© {{ current_year }} Muhammad Taha Khurram. All Rights Reserved.</p>
+    <a href="{{ url_for('admin_dashboard') }}" class="footer-admin-link">Admin</a>
   </div>
 </footer>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
 
 <!-- Page Loader Script -->
-<script src="{{ url_for('static', filename='js/loader.js') }}"></script>
+<script defer src="{{ url_for('static', filename='js/loader.js') }}"></script>
+
+<!-- Site-wide scroll reveal + progress bar -->
+<script defer src="{{ url_for('static', filename='js/scroll-reveal.js') }}"></script>
 </body>
 </html>

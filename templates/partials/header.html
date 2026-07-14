@@ -38,6 +38,19 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/scroll-animations.css') }}">
+
+  <!-- Scroll-reveal FOUC guard: hide reveal targets before paint, but ONLY
+       when JS is on and motion is allowed. If this doesn't run, content
+       stays visible. -->
+  <script>
+    (function () {
+      var reduced =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduced) document.documentElement.classList.add("js-reveal");
+    })();
+  </script>
 
   <!-- JSON-LD Schema for Google Rich Results -->
   <script type="application/ld+json">
@@ -57,8 +70,8 @@
     "priceRange": "$$",
     "description": "QA Engineer offering manual testing, automation testing, and QA consultation services.",
     "sameAs": [
-      "https://www.linkedin.com/in/muhammad-taha-khurram-2b77ba366/",
-      "https://github.com/mtahaofficial007-collab"
+      "{{ settings.linkedin_url }}",
+      "{{ settings.github_url }}"
     ],
     "offers": [
       {
@@ -93,7 +106,11 @@
 <!-- Page Loader -->
 <div class="page-loader" id="pageLoader">
   <div class="loader-content">
-    <div class="loader-spinner"></div>
     <span class="loader-text">MTK</span>
+    <div class="loader-dots" aria-label="Loading" role="status">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </div>

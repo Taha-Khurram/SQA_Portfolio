@@ -152,3 +152,22 @@
   position: relative;
   z-index: 1;
 }
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* Discreet admin entry point */
+.footer-admin-link {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+  transition: color var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+
+.footer-admin-link:hover {
+  color: var(--text);
+  opacity: 1;
+}

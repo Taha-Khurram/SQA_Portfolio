@@ -1,0 +1,56 @@
+{% extends "admin/base.html" %}
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<div class="admin-header-row">
+  <h1>Projects</h1>
+  <a href="{{ url_for('admin_project_new') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Project</a>
+</div>
+
+{% if projects %}
+<div class="admin-table-wrap">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Tags</th>
+        <th>Slug</th>
+        <th class="admin-actions-col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in projects %}
+      <tr>
+        <td>
+          {% if p.card_image_url %}
+          <img src="{{ p.card_image_url }}" alt="" class="admin-thumb">
+          {% else %}
+          <span class="admin-thumb admin-thumb-empty"><i class="fas fa-image"></i></span>
+          {% endif %}
+        </td>
+        <td><strong>{{ p.title }}</strong></td>
+        <td>
+          {% for tag in p.tags %}<span class="admin-tag">{{ tag }}</span>{% endfor %}
+        </td>
+        <td><code>{{ p.slug }}</code></td>
+        <td class="admin-actions-col">
+          <a href="{{ url_for('project_detail', slug=p.slug) }}" target="_blank" class="admin-icon-btn" title="View"><i class="fas fa-eye"></i></a>
+          <a href="{{ url_for('admin_project_edit', project_id=p.id) }}" class="admin-icon-btn" title="Edit"><i class="fas fa-pen"></i></a>
+          <form method="POST" action="{{ url_for('admin_project_delete', project_id=p.id) }}" onsubmit="return confirm('Delete this project? This cannot be undone.');" style="display:inline;">
+            <button type="submit" class="admin-icon-btn admin-icon-danger" title="Delete"><i class="fas fa-trash"></i></button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="admin-empty">
+  <i class="fas fa-folder-open"></i>
+  <p>No projects yet.</p>
+  <a href="{{ url_for('admin_project_new') }}" class="btn btn-primary">Add your first project</a>
+</div>
+{% endif %}
+{% endblock %}

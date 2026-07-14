@@ -1,0 +1,45 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="admin-header-row">
+  <h1>Dashboard</h1>
+  <a href="{{ url_for('admin_project_new') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Project</a>
+</div>
+
+{% if not fb_ready %}
+<div class="admin-alert admin-alert-warning">
+  <strong>Firebase is not connected.</strong>
+  {{ fb_error }} The public site still works with default contact details, but
+  saving settings, adding projects, and uploading images need Firebase configured
+  (<code>FIREBASE_CREDENTIALS</code> + <code>FIREBASE_STORAGE_BUCKET</code>).
+</div>
+{% endif %}
+
+<div class="admin-cards">
+  <a href="{{ url_for('admin_settings') }}" class="admin-tile">
+    <i class="fas fa-address-card"></i>
+    <h3>Contact Info</h3>
+    <p>Edit email, phone, LinkedIn & GitHub.</p>
+  </a>
+  <a href="{{ url_for('admin_projects') }}" class="admin-tile">
+    <i class="fas fa-folder-open"></i>
+    <h3>Projects</h3>
+    <p>{{ projects|length }} project(s) published.</p>
+  </a>
+  <a href="{{ url_for('admin_project_new') }}" class="admin-tile">
+    <i class="fas fa-plus-circle"></i>
+    <h3>New Project</h3>
+    <p>Add a project with images & tags.</p>
+  </a>
+</div>
+
+{% if fb_ready and projects|length == 0 %}
+<div class="admin-seed-box">
+  <p>No projects yet. Want to load your two original projects (SEO Master & Time Center) to start from?</p>
+  <form method="POST" action="{{ url_for('admin_seed') }}">
+    <button type="submit" class="btn btn-ghost"><i class="fas fa-seedling"></i> Seed starter projects</button>
+  </form>
+</div>
+{% endif %}
+{% endblock %}

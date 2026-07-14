@@ -1,0 +1,67 @@
+/* ============================================================
+   Scroll Animations — site-wide reveal-on-scroll system.
+   Token-driven, no per-page markup required (scroll-reveal.js
+   auto-tags elements). Hidden states are gated behind
+   `html.js-reveal` so content is ALWAYS visible if JS is off
+   or the user prefers reduced motion.
+   ============================================================ */
+
+/* ---- Scroll progress bar (injected by scroll-reveal.js) ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: var(--gradient-vivid);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+  z-index: var(--z-loader);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ============================================================
+   Reveal engine — only hides elements when JS is active.
+   ============================================================ */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition:
+    opacity 0.45s var(--ease),
+    transform 0.45s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+/* Directional & scale variants (set via data-reveal) */
+.js-reveal .reveal[data-reveal="left"]  { transform: translate3d(-48px, 0, 0); }
+.js-reveal .reveal[data-reveal="right"] { transform: translate3d(48px, 0, 0); }
+.js-reveal .reveal[data-reveal="down"]  { transform: translate3d(0, -40px, 0); }
+.js-reveal .reveal[data-reveal="zoom"]  { transform: scale(0.9); }
+.js-reveal .reveal[data-reveal="fade"]  { transform: none; }
+
+/* Revealed state — settle to natural position */
+.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.js-reveal .reveal[data-reveal="zoom"].is-visible {
+  transform: scale(1);
+}
+
+/* Once revealed, drop will-change so we don't hold GPU layers */
+.js-reveal .reveal.is-visible {
+  will-change: auto;
+}
+
+/* Reduced motion: never hide anything, kill the progress bar animation */
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .scroll-progress { display: none; }
+}

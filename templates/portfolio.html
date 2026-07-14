@@ -11,41 +11,34 @@
 
     <!-- Projects Section -->
     <section class="projects-section">
+        {% if projects %}
         <div class="projects-grid">
-
-            <!-- Project 1 -->
+            {% for p in projects %}
             <div class="project-card">
-                <img src="/static/images/project1.png" alt="Seo App Project" class="project-image">
-                <h3>SEO Master</h3>
-                <p class="project-desc">SEO Master Dashboard, a modern Flask-based web application designed to help users manage and optimize their SEO performance. </p>
+                {% if p.card_image_url %}
+                <img src="{{ p.card_image_url }}" alt="{{ p.title }}" class="project-image">
+                {% endif %}
+                <h3>{{ p.title }}</h3>
+                {% if p.short_description %}
+                <p class="project-desc">{{ p.short_description }}</p>
+                {% endif %}
+                {% if p.tags %}
                 <div class="project-tags">
-                    <span class="tag">Selenium</span>
-                    <span class="tag">Postman</span>
-                    <span class="tag">Jenkins</span>
-                    <span class="tag">JMeter</span>
+                    {% for tag in p.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
                 </div>
-                <a href="/seo_helper_master" class="project-details">Details</a>
+                {% endif %}
+                <a href="{{ url_for('project_detail', slug=p.slug) }}" class="project-details">Details</a>
             </div>
-
-            <!-- Project 2 -->
-<div class="project-card">
-    <img src="/static/images/project2.png" alt="Time Center E-Commerce Website" class="project-image">
-    <h3>Time Center E-Commerce</h3>
-    <p class="project-desc">
-        Time Center is a modern and fully responsive eCommerce platform for luxury watches, 
-        designed with elegant UI and optimized for fast performance. 
-    </p>
-    <div class="project-tags">
-      <span class="tag">Selenium</span>
-                    <span class="tag">Postman</span>
-                    <span class="tag">Jenkins</span>
-                    <span class="tag">JMeter</span>
-    </div>
-    <a href="/time_center" target="_blank" class="project-details">Details</a>
-</div>
-
-
+            {% endfor %}
         </div>
+        {% else %}
+        <div class="projects-empty">
+            <i class="fas fa-folder-open"></i>
+            <p>Projects are on their way — check back soon.</p>
+        </div>
+        {% endif %}
     </section>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio.css') }}">

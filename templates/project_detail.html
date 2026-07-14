@@ -1,0 +1,53 @@
+{% include "partials/header.html" %}
+{% include "partials/navbar.html" %}
+
+<!-- Project Hero Section -->
+<section class="project-hero">
+  <div class="project-content">
+    <h1 class="project-title">{{ project.title }}</h1>
+    {% if project.short_description %}
+    <p class="project-desc">{{ project.short_description }}</p>
+    {% endif %}
+    <a href="{{ url_for('portfolio') }}" class="project-btn">
+      <i class="fas fa-arrow-left"></i> Back to Projects
+    </a>
+  </div>
+</section>
+
+<!-- Project Overview Section -->
+{% if project.overview or project.tags %}
+<section class="project-overview">
+  <div class="overview-container">
+    <h2 class="overview-heading">Project Overview</h2>
+    {% if project.overview %}
+    <p class="overview-desc">{{ project.overview }}</p>
+    {% endif %}
+
+    {% if project.tags %}
+    <div class="project-tags">
+      {% for tag in project.tags %}
+      <span class="tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+<!-- Featured Image Preview Section -->
+{% if project.preview_image_url %}
+<section class="featured-preview">
+  <div class="preview-container">
+    <h2 class="preview-heading">Project Preview</h2>
+    <p class="preview-desc">
+      Take a quick look at the interface and design of this project.
+    </p>
+    <div class="preview-card">
+      <img src="{{ project.preview_image_url }}" alt="{{ project.title }} preview">
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/projects.css') }}">
+{% include "partials/footer.html" %}

@@ -11,6 +11,14 @@
 
 html {
   scroll-behavior: smooth;
+  /* Set on <html> too so there's no white flash between page navigations. */
+  background: var(--bg);
+  /* Always reserve space for the vertical scrollbar so the layout doesn't
+     shift right/left when a page is taller/shorter than the viewport.
+     scrollbar-gutter is the modern way; overflow-y: scroll is the fallback
+     for browsers that don't support it. */
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
 }
 
 body {

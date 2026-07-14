@@ -423,19 +423,6 @@
   margin-bottom: var(--space-8);
 }
 
-/* Static decorative accents (no longer animated). */
-.float-circle {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(2px);
-  opacity: 0.25;
-  pointer-events: none;
-}
-
-.circle1 { width: 90px; height: 90px; background: var(--brand-1); top: 12%; left: 8%; }
-.circle2 { width: 60px; height: 60px; background: var(--brand-2); bottom: 16%; right: 12%; }
-.circle3 { width: 40px; height: 40px; background: var(--brand-3); top: 30%; right: 22%; }
-
 /* ------------------------------------------------------------
    TESTIMONIALS
    ------------------------------------------------------------ */
