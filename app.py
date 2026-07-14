@@ -51,8 +51,8 @@ def portfolio():
     return render_template('portfolio.html')
 
 
-@app.route('/thank-you')
-@app.route('/thank-you/')
+@app.route('/thank-you', methods=['GET', 'POST'])
+@app.route('/thank-you/', methods=['GET', 'POST'])
 def thank_you():
     return render_template('thank-you.html')
 
