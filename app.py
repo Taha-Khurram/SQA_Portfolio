@@ -51,6 +51,12 @@ def portfolio():
     return render_template('portfolio.html')
 
 
+@app.route('/thank-you')
+@app.route('/thank-you/')
+def thank_you():
+    return render_template('thank-you.html')
+
+
 # ------------------------------------------------
 # Portfolio Project Routes
 # ------------------------------------------------
