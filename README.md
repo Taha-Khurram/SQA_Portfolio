@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="static/images/dp.jpg" alt="Muhammad Taha Khurram" width="120" height="120" style="border-radius:50%" />
+<img src="static/images/Testing.jpg" alt="SQA Portfolio logo" width="120" height="120" />
 
 # Muhammad Taha Khurram — QA Engineer Portfolio
 
