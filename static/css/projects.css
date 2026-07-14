@@ -35,10 +35,27 @@
   animation: spin-slow 40s linear infinite;
 }
 
+/* Shared rotation used by the hero glow + the overview orbit rings.
+   (Defined here so the detail page doesn't depend on home.css.) */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
 .project-content {
   position: relative;
   z-index: 1;
   max-width: 800px;
+}
+
+/* Eyebrow label above the title (mirrors the home hero greeting) */
+.project-eyebrow {
+  display: inline-block;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
 }
 
 .project-title {
@@ -58,7 +75,20 @@
   margin-bottom: var(--space-8);
 }
 
-/* Back button */
+/* Tag pills centered in the hero */
+.hero-tags {
+  justify-content: center;
+  margin-bottom: var(--space-8);
+}
+
+/* Hero action buttons */
+.project-hero-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .project-btn {
   display: inline-flex;
   align-items: center;
@@ -70,12 +100,27 @@
   font-weight: 600;
   font-size: var(--fs-body);
   box-shadow: var(--shadow-brand);
-  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+              background var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 
 .project-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 28px rgba(37, 117, 252, 0.45);
+}
+
+/* Secondary / ghost hero button */
+.project-btn-ghost {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border-brand);
+  box-shadow: none;
+}
+
+.project-btn-ghost:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+  box-shadow: none;
 }
 
 /* ------------------------------------------------------------
@@ -110,7 +155,6 @@
   min-height: var(--hero-min);
   background: var(--bg-elev);
   padding: var(--section-y) var(--space-6);
-  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -121,6 +165,102 @@
   width: 100%;
   margin: 0 auto;
 }
+
+/* Two-column layout (graphic + content), mirroring the home "About" section */
+.overview-grid {
+  max-width: var(--container);
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.overview-content { text-align: left; }
+
+/* Left-align the heading/description inside the two-column content */
+.overview-content .overview-heading { margin-bottom: var(--space-4); }
+
+.overview-content .overview-desc {
+  margin: 0 0 var(--space-8);
+  max-width: none;
+}
+
+.overview-content .project-tags { justify-content: flex-start; }
+
+/* Signature orbit graphic — same identity as the home page */
+.overview-graphic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 340px;
+}
+
+.tech-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(106, 17, 203, 0.18), rgba(37, 117, 252, 0.18));
+  border: 1px solid var(--border-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.25);
+}
+
+.tech-circle::before,
+.tech-circle::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(139, 92, 246, 0.25);
+}
+
+.tech-circle::before {
+  width: 260px;
+  height: 260px;
+  animation: spin-slow 24s linear infinite;
+}
+
+.tech-circle::after {
+  width: 320px;
+  height: 320px;
+  animation: spin-slow 34s linear infinite reverse;
+}
+
+.tech-icon-main {
+  font-size: 3.5rem;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.overview-graphic .orbit-icon {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 1px solid var(--border-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #c084fc;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur) var(--ease);
+}
+
+.overview-graphic .orbit-icon:hover { transform: scale(1.15); }
+
+.orbit-1 { top: -20px; left: 50%; transform: translateX(-50%); }
+.orbit-2 { right: -20px; top: 50%; transform: translateY(-50%); }
+.orbit-3 { bottom: -20px; left: 50%; transform: translateX(-50%); }
+.orbit-4 { left: -20px; top: 50%; transform: translateY(-50%); }
 
 .overview-cards {
   display: grid;
@@ -400,8 +540,62 @@
 }
 
 /* ------------------------------------------------------------
+   COLLABORATION CTA (mirrors the home page's closing section)
+   ------------------------------------------------------------ */
+.project-cta {
+  background: var(--bg);
+  padding: var(--section-y) var(--space-6);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 120%, rgba(37, 117, 252, 0.14), transparent 55%);
+  pointer-events: none;
+}
+
+.project-cta-container {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.project-cta-heading {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.project-cta-subtitle {
+  font-size: var(--fs-body);
+  color: var(--text-body);
+  line-height: var(--lh-body);
+  margin-bottom: var(--space-8);
+}
+
+/* ------------------------------------------------------------
    RESPONSIVE
    ------------------------------------------------------------ */
+@media (max-width: 900px) {
+  /* Stack the overview: graphic on top, content below */
+  .overview-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+  .overview-content { text-align: center; }
+  .overview-content .overview-desc { margin-left: auto; margin-right: auto; }
+  .overview-content .project-tags { justify-content: center; }
+}
+
 @media (max-width: 768px) {
   .project-title { font-size: 2rem; }
   .project-desc,
@@ -410,5 +604,6 @@
   .preview-desc { font-size: 0.95rem; }
   .overview-heading,
   .features-heading,
-  .preview-heading { font-size: 2rem; }
+  .preview-heading,
+  .project-cta-heading { font-size: 2rem; }
 }

@@ -4,40 +4,70 @@
 <!-- Project Hero Section -->
 <section class="project-hero">
   <div class="project-content">
+    <span class="project-eyebrow">Featured Project</span>
     <h1 class="project-title">{{ project.title }}</h1>
     {% if project.short_description %}
     <p class="project-desc">{{ project.short_description }}</p>
     {% endif %}
-    <a href="{{ url_for('portfolio') }}" class="project-btn">
-      <i class="fas fa-arrow-left"></i> Back to Projects
-    </a>
-  </div>
-</section>
-
-<!-- Project Overview Section -->
-{% if project.overview or project.tags %}
-<section class="project-overview">
-  <div class="overview-container">
-    <h2 class="overview-heading">Project Overview</h2>
-    {% if project.overview %}
-    <p class="overview-desc">{{ project.overview }}</p>
-    {% endif %}
 
     {% if project.tags %}
-    <div class="project-tags">
+    <div class="project-tags hero-tags">
       {% for tag in project.tags %}
       <span class="tag">{{ tag }}</span>
       {% endfor %}
     </div>
     {% endif %}
+
+    {% set images = project.gallery_urls if project.gallery_urls else ([project.preview_image_url] if project.preview_image_url else []) %}
+    <div class="project-hero-actions">
+      <a href="{{ url_for('portfolio') }}" class="project-btn">
+        <i class="fas fa-arrow-left"></i> Back to Projects
+      </a>
+      {% if images %}
+      <a href="#project-preview" class="project-btn project-btn-ghost">
+        <i class="fas fa-images"></i> View Gallery
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Project Overview Section (two-column, mirrors the home "About" layout) -->
+{% if project.overview or project.tags %}
+<section class="project-overview">
+  <div class="overview-grid">
+    <!-- Signature orbit graphic (same identity as the home page) -->
+    <div class="overview-graphic">
+      <div class="tech-circle">
+        <div class="tech-icon-main"><i class="fas fa-shield-alt"></i></div>
+        <div class="orbit-icon orbit-1"><i class="fas fa-bug"></i></div>
+        <div class="orbit-icon orbit-2"><i class="fas fa-code"></i></div>
+        <div class="orbit-icon orbit-3"><i class="fas fa-check-circle"></i></div>
+        <div class="orbit-icon orbit-4"><i class="fas fa-cogs"></i></div>
+      </div>
+    </div>
+
+    <div class="overview-content">
+      <h2 class="overview-heading">Project Overview</h2>
+      {% if project.overview %}
+      <p class="overview-desc">{{ project.overview }}</p>
+      {% endif %}
+
+      {% if project.tags %}
+      <div class="project-tags">
+        {% for tag in project.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
   </div>
 </section>
 {% endif %}
 
 <!-- Featured Image Preview Section (slider) -->
-{% set images = project.gallery_urls if project.gallery_urls else ([project.preview_image_url] if project.preview_image_url else []) %}
 {% if images %}
-<section class="featured-preview">
+<section id="project-preview" class="featured-preview">
   <div class="preview-container">
     <h2 class="preview-heading">Project Preview</h2>
     <p class="preview-desc">
@@ -74,6 +104,17 @@
   </div>
 </section>
 {% endif %}
+
+<!-- Collaboration CTA (mirrors the home page's closing section) -->
+<section class="project-cta">
+  <div class="project-cta-container">
+    <h2 class="project-cta-heading">Have a project in mind?</h2>
+    <p class="project-cta-subtitle">
+      Let's build something reliable together. Tell me about your idea and I'll help you ship it with confidence.
+    </p>
+    <a href="{{ url_for('contact') }}" class="project-btn">Get in Touch</a>
+  </div>
+</section>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/projects.css') }}">
 
