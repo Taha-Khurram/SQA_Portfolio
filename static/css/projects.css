@@ -1,20 +1,27 @@
-/* ---------------------- */
-/* Project Hero Section    */
-/* ---------------------- */
+/* ============================================================
+   Project detail pages (SEO Master, Time Center) — token-driven,
+   consistent with the site system. Shared by both templates.
+   Every section fills the viewport (--hero-min), matching the
+   rest of the site.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   HERO
+   ------------------------------------------------------------ */
 .project-hero {
-  height: 90vh;
+  min-height: var(--hero-min);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #0a0a0a 0%, #111 50%, #0d0d0d 100%);
+  color: var(--text);
+  background: var(--bg);
   position: relative;
   overflow: hidden;
+  padding: var(--section-y) var(--space-6);
 }
 
-/* Animated subtle background */
+/* One slow, low-opacity ambient glow (matches the home hero). */
 .project-hero::before {
   content: "";
   position: absolute;
@@ -22,451 +29,297 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 180deg, #6a11cb, #2575fc, #a944ff, #6a11cb);
-  animation: rotate-bg 20s linear infinite;
+  background: conic-gradient(from 180deg, var(--brand-1), var(--brand-2), var(--brand-3), var(--brand-1));
+  opacity: 0.12;
   z-index: 0;
-  opacity: 0.1;
+  animation: spin-slow 40s linear infinite;
 }
 
 .project-content {
   position: relative;
   z-index: 1;
   max-width: 800px;
-  padding: 0 20px;
 }
 
-/* Project Title */
 .project-title {
-  font-size: 2.4rem;
+  font-size: var(--fs-hero);
   font-weight: 700;
-  margin-bottom: 20px;
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  margin-bottom: var(--space-4);
+  background: var(--gradient-vivid);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: fadeInUp 1s ease forwards;
 }
 
-/* Project Description */
 .project-desc {
   font-size: 1.1rem;
-  color: #aaa;
-  line-height: 1.6;
-  margin-bottom: 40px;
-  animation: fadeInUp 1s ease forwards;
-  animation-delay: 0.2s;
-  opacity: 0;
-  transform: translateY(20px);
+  color: var(--text-body);
+  line-height: var(--lh-body);
+  margin-bottom: var(--space-8);
 }
 
-/* Back Button */
+/* Back button */
 .project-btn {
-  display: inline-block;
-  padding: 14px 36px;
-  border-radius: 35px;
-  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-brand);
   color: #fff;
-  text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 6px 20px rgba(37, 117, 252, 0.4);
-  transition: all 0.4s ease;
+  font-size: var(--fs-body);
+  box-shadow: var(--shadow-brand);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
 .project-btn:hover {
-  transform: translateY(-4px) scale(1.05);
-  background: linear-gradient(135deg, #6a11cb, #a944ff);
-  box-shadow: 0 10px 28px rgba(106, 17, 203, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(37, 117, 252, 0.45);
 }
 
-/* Fade in + slide animation */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ------------------------------------------------------------
+   Shared section header (overview / features / preview)
+   ------------------------------------------------------------ */
+.overview-heading,
+.features-heading,
+.preview-heading {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Background rotation reused from hero */
-@keyframes rotate-bg {
-  100% {
-    transform: rotate(360deg);
-  }
+.overview-desc,
+.features-desc,
+.preview-desc {
+  font-size: var(--fs-body);
+  color: var(--text-body);
+  line-height: var(--lh-body);
+  max-width: 750px;
+  margin: 0 auto var(--space-12);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .project-title {
-    font-size: 2rem;
-  }
-
-  .project-desc {
-    font-size: 1rem;
-  }
-
-  .project-btn {
-    padding: 12px 28px;
-  }
-}
-
-
-
-
-
-/* ---------------------- */
-/* Project Overview Section */
-/* ---------------------- */
+/* ------------------------------------------------------------
+   OVERVIEW
+   ------------------------------------------------------------ */
 .project-overview {
-  background: #0b0b0b; /* static dark background */
-  color: #fff;
-  padding: 100px 20px;
-  font-family: "Poppins", sans-serif;
+  min-height: var(--hero-min);
+  background: var(--bg-elev);
+  padding: var(--section-y) var(--space-6);
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .overview-container {
-  max-width: 1100px;
+  max-width: var(--container);
+  width: 100%;
   margin: 0 auto;
-  position: relative;
-  z-index: 1;
 }
 
-/* Section Heading */
-.overview-heading {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 25px;
-  background: linear-gradient(90deg, #6a11cb, #2575fc, #a944ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Section Description */
-.overview-desc {
-  font-size: 1rem;
-  color: #aaa;
-  margin-bottom: 50px;
-  line-height: 1.7;
-  max-width: 750px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Overview Cards Container */
 .overview-cards {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-6);
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-/* Individual Card */
 .overview-card {
-  background: rgba(102, 3, 232, 0.08); /* subtle glass */
-  border-radius: 18px;
-  padding: 25px 20px;
-  min-width: 220px;
-  max-width: 280px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(166, 90, 248, 0.15);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
 }
 
 .overview-card:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+  transform: translateY(-6px);
+  border-color: var(--border-brand);
+  box-shadow: var(--shadow);
 }
 
-/* Card Title */
-.overview-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
-  color: #fff;
-}
-
-/* Card Text */
-.overview-card p {
-  font-size: 0.95rem;
-  color: #ccc;
-  line-height: 1.5;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .overview-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .overview-heading {
-    font-size: 2rem;
-  }
-
-  .overview-desc {
-    font-size: 0.95rem;
-  }
-}
-
-/* Technology Cards Icons */
 .tech-icon {
   font-size: 2rem;
-  color: #6a11cb;
-  margin-bottom: 12px;
+  margin-bottom: var(--space-3);
   display: inline-block;
-  transition: transform 0.4s ease, color 0.4s ease;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform var(--dur) var(--ease);
 }
 
 .overview-card:hover .tech-icon {
-  transform: scale(1.3) rotate(10deg);
-  color: #2575fc;
-}
-
-/* Adjust card padding for longer descriptions */
-.overview-card {
-  background: rgba(102, 3, 232, 0.08);
-  border-radius: 18px;
-  padding: 30px 20px;
-  min-width: 220px;
-  max-width: 280px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(166, 90, 248, 0.15);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  text-align: center;
+  transform: scale(1.12);
 }
 
 .overview-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: #fff;
+  font-size: var(--fs-h3);
+  margin-bottom: var(--space-2);
+  color: var(--text);
 }
 
 .overview-card p {
-  font-size: 0.9rem;
-  color: #ccc;
-  line-height: 1.5;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: var(--lh-body);
 }
 
-
-/* ---------------------- */
-/* Features Section       */
-/* ---------------------- */
+/* ------------------------------------------------------------
+   FEATURES
+   ------------------------------------------------------------ */
 .features-section {
-  background: linear-gradient(135deg, #0a0a0a, #111);
-  color: #fff;
-  padding: 100px 20px;
-  font-family: "Poppins", sans-serif;
+  min-height: var(--hero-min);
+  background: var(--bg);
+  padding: var(--section-y) var(--space-6);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Dynamic floating conic-gradient background */
+/* Static ambient glow (was an infinite rotating conic). */
 .features-section::before {
   content: "";
   position: absolute;
-  top: -40%;
-  left: -40%;
-  width: 180%;
-  height: 180%;
-  background: conic-gradient(from 180deg, #6a11cb, #2575fc, #a944ff, #6a11cb);
-  animation: rotate-features-bg 25s linear infinite;
-  z-index: 0;
-  opacity: 0.08;
-}
-
-@keyframes rotate-features-bg {
-  100% { transform: rotate(360deg); }
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(106, 17, 203, 0.12), transparent 55%);
+  pointer-events: none;
 }
 
 .features-container {
-  max-width: 1200px;
+  max-width: var(--container);
+  width: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 1;
   text-align: center;
 }
 
-.features-heading {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  background: linear-gradient(90deg, #6a11cb, #2575fc, #a944ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.features-desc {
-  font-size: 1rem;
-  color: #aaa;
-  margin-bottom: 50px;
-  line-height: 1.6;
-  max-width: 750px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Features Cards Container */
 .features-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  perspective: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6);
+  max-width: 1050px;
+  margin: 0 auto;
 }
 
-/* Individual Feature Card */
 .feature-card {
-  background: rgba(102, 3, 232, 0.08);
-  border-radius: 20px;
-  padding: 25px 20px;
-  width: 250px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(166, 90, 248, 0.15);
-  transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.3s ease;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.8s ease forwards;
-  position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
 }
 
-.feature-card:nth-child(1) { animation-delay: 0.2s; }
-.feature-card:nth-child(2) { animation-delay: 0.4s; }
-.feature-card:nth-child(3) { animation-delay: 0.6s; }
-.feature-card:nth-child(4) { animation-delay: 0.8s; }
-.feature-card:nth-child(5) { animation-delay: 1s; }
-.feature-card:nth-child(6) { animation-delay: 1.2s; }
-
 .feature-card:hover {
-  transform: translateY(-10px) rotateX(3deg) rotateY(5deg) scale(1.05);
-  box-shadow: 0 14px 36px rgba(0,0,0,0.65);
-  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-6px);
+  border-color: var(--border-brand);
+  box-shadow: var(--shadow);
 }
 
 .feature-icon {
   font-size: 2rem;
-  color: #6a11cb;
-  margin-bottom: 15px;
+  margin-bottom: var(--space-4);
   display: inline-block;
-  transition: transform 0.4s ease, color 0.4s ease;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform var(--dur) var(--ease);
 }
 
 .feature-card:hover .feature-icon {
-  transform: rotate(15deg) scale(1.2);
-  color: #2575fc;
+  transform: scale(1.12);
 }
 
 .feature-card h3 {
-  font-size: 1.2rem;
+  font-size: var(--fs-h3);
   font-weight: 600;
-  margin-bottom: 10px;
-  color: #fff;
+  margin-bottom: var(--space-2);
+  color: var(--text);
 }
 
 .feature-card p {
-  font-size: 0.95rem;
-  color: #ccc;
-  line-height: 1.5;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: var(--lh-body);
 }
 
-/* Fade in + slide animation reused */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .features-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-/* ---------------------- */
-/* Featured Image Preview  */
-/* ---------------------- */
+/* ------------------------------------------------------------
+   FEATURED PREVIEW
+   ------------------------------------------------------------ */
 .featured-preview {
-  background: #0b0b0b; /* Static dark background */
-  color: #fff;
-  padding: 100px 20px;
-  font-family: "Poppins", sans-serif;
+  min-height: var(--hero-min);
+  background: var(--bg-elev);
+  padding: var(--section-y) var(--space-6);
   text-align: center;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .preview-container {
   max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
-  position: relative;
-  z-index: 1;
 }
 
-/* Section Heading */
-.preview-heading {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  background: linear-gradient(90deg, #6a11cb, #2575fc, #a944ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Section Description */
-.preview-desc {
-  font-size: 1rem;
-  color: #aaa;
-  margin-bottom: 50px;
-  line-height: 1.6;
-  max-width: 750px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Image Card */
 .preview-card {
-  background: rgba(102, 3, 232, 0.08); /* glass effect */
-  border-radius: 20px;
-  padding: 15px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
   display: inline-block;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(166, 90, 248, 0.15);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
 }
 
 .preview-card img {
   max-width: 100%;
-  border-radius: 16px;
+  border-radius: var(--radius);
   display: block;
-  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .preview-card:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+  transform: translateY(-6px);
+  border-color: var(--border-brand);
+  box-shadow: var(--shadow);
 }
 
-.preview-card:hover img {
-  transform: scale(1.02);
-  filter: brightness(1.1);
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .preview-heading {
-    font-size: 2rem;
-  }
-  .preview-desc {
-    font-size: 0.95rem;
-  }
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .project-title { font-size: 2rem; }
+  .project-desc,
+  .overview-desc,
+  .features-desc,
+  .preview-desc { font-size: 0.95rem; }
+  .overview-heading,
+  .features-heading,
+  .preview-heading { font-size: 2rem; }
 }
