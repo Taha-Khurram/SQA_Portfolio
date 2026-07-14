@@ -100,9 +100,9 @@ Configured for automatic deployment on Netlify:
 
 ## 📇 Contact
 
-- **Email:** m.tahaofficial007@gmail.com
+- **Email:** tahakhurramofficial@gmail.com
 - **LinkedIn:** [Muhammad Taha Khurram](https://www.linkedin.com/in/muhammad-taha-khurram-2b77ba366/)
-- **GitHub:** [mtahaofficial007-collab](https://github.com/mtahaofficial007-collab)
+- **GitHub:** [mtahaofficial007-collab](https://github.com/Taha-Khurram)
 
 ## 📄 License
 
